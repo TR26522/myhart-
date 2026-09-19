@@ -173,7 +173,7 @@ def main():
         screen.blit(glow_layer, (0, 0))
         screen.blit(text_layer, (0, 0))
         
-        center_start = fill_start_frame + 200
+        center_start = max((p.delay for p in particles), default=0) + 30
         if frame > center_start:
             progress = min(1.0, (frame - center_start) / 60)
             center_alpha = int(255 * (1 - math.exp(-progress * 8)))

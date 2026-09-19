@@ -89,8 +89,9 @@
       }
       frame++; context.clearRect(0, 0, width, height);
       particles.forEach(drawParticle);
-      if (frame > 900) {
-        const alpha = Math.min(1, (frame - 900) / 60);
+      const centerStart = Math.max(...particles.map(p => p.delay)) + 30;
+      if (frame > centerStart) {
+        const alpha = Math.min(1, (frame - centerStart) / 60);
         const pulse = 1 + .025 * Math.sin(frame * .05);
         context.save(); context.globalAlpha = alpha; context.fillStyle = '#fffaf5';
         context.shadowColor = '#fffaf5'; context.shadowBlur = 18;
