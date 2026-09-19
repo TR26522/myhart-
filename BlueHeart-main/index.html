@@ -95,9 +95,9 @@
         context.save(); context.globalAlpha = alpha; context.fillStyle = '#fffaf5';
         context.shadowColor = '#fffaf5'; context.shadowBlur = 18;
         const centerText = 'Mariam I love you so much';
-        let centerSize = Math.min(54, Math.max(18, width * .12));
+        let centerSize = width <= 600 ? 22 : Math.min(54, Math.max(18, width * .12));
         context.font = `bold ${centerSize}px Georgia`;
-        const maxTextWidth = Math.max(220, width - 32);
+        const maxTextWidth = Math.max(180, width - 40);
         const measuredWidth = context.measureText(centerText).width;
         if (measuredWidth > maxTextWidth) centerSize *= maxTextWidth / measuredWidth;
         context.font = `bold ${centerSize * pulse}px Georgia`;
