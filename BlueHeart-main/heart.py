@@ -9,7 +9,7 @@ SCALE = 20
 
 
 WORDS = ["love you", "Love You", "LOVE YOU"]
-CENTER_TEXT = " Mariam I love you so much "
+CENTER_TEXT = " Happy birthday Sham I love you so much "
 COLORS = [
     (70, 130, 180),
     (30, 144, 255),  
