@@ -94,14 +94,17 @@
         const pulse = 1 + .025 * Math.sin(frame * .05);
         context.save(); context.globalAlpha = alpha; context.fillStyle = '#fffaf5';
         context.shadowColor = '#fffaf5'; context.shadowBlur = 18;
-        const centerText = 'Mariam I love you so much';
+        const centerLines = width <= 600 ? ['Mariam', 'I love you so much'] : ['Mariam I love you so much'];
         let centerSize = width <= 600 ? 22 : Math.min(54, Math.max(18, width * .12));
         context.font = `bold ${centerSize}px Georgia`;
         const maxTextWidth = Math.max(180, width - 40);
-        const measuredWidth = context.measureText(centerText).width;
+        const measuredWidth = Math.max(...centerLines.map(line => context.measureText(line).width));
         if (measuredWidth > maxTextWidth) centerSize *= maxTextWidth / measuredWidth;
         context.font = `bold ${centerSize * pulse}px Georgia`;
-        context.textAlign = 'center'; context.textBaseline = 'middle'; context.fillText(centerText, width / 2, height / 2); context.restore();
+        context.textAlign = 'center'; context.textBaseline = 'middle';
+        const lineHeight = centerSize * pulse * 1.15;
+        centerLines.forEach((line, index) => context.fillText(line, width / 2, height / 2 + (index - (centerLines.length - 1) / 2) * lineHeight));
+        context.restore();
       }
       requestAnimationFrame(animate);
     }
